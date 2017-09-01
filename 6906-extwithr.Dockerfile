@@ -81,12 +81,9 @@ RUN cd /delft3d/src \
 
 RUN cp /root/Downloads/libraries/mpich-3.2/bin/* /delft3d/bin/lnx64/flow2d3d/bin/
 RUN cp -R /root/Downloads/libraries/mpich-3.2/lib/* /delft3d/bin/lnx64/flow2d3d/bin/
+RUN mkdir -p /mpi/bin && cp -R $MPICH2_3_2_DIR/bin/* /mpi/bin
 
 #R
-FROM ubuntu:16.04
-RUN mkdir -p /delft3d/bin
-COPY --from=0 /delft3d/bin /delft3d/bin
-COPY --from=0 /delft3d/examples /delft3d/examples
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		locales \
